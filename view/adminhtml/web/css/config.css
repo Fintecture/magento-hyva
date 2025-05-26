@@ -1,0 +1,33 @@
+.fintecture-admin-section .config-heading, 
+.fintecture-admin-section .heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fintecture-admin-section .config-heading {
+    justify-content: space-between;
+}
+
+.fintecture-admin-section .heading {
+    justify-content: center;
+}
+
+.fintecture-admin-section .config-heading img {
+    width: 100px;
+    align-self: center;
+}
+
+.fintecture-admin-section .admin__collapsible-block .comment {
+    display: none;
+}
+
+.fintecture-admin-section #connection-test-result {
+    display: none;
+}
+
+.fintecture-admin-section #connection-test-result.message-error,
+.fintecture-admin-section #connection-test-result.message-success,
+.fintecture-admin-warning {
+    margin-top: 20px;
+}

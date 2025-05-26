@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+    <type name="fintecture_cache" translate="label,description" instance="Fintecture\HyvaPayment\Model\Cache\Type">
+        <label>Fintecture Cache</label>
+        <description>Cache pool of the Fintecture module.</description>
+    </type>
+</config>

@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Payment Method Facade configuration -->
+    <virtualType name="FintectureFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">Fintecture\HyvaPayment\Gateway\Config\Config::CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Fintecture\HyvaPayment\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">FintectureValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">FintectureCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Configuration reader -->
+    <type name="Fintecture\HyvaPayment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Fintecture\HyvaPayment\Gateway\Config\Config::CODE</argument>
+        </arguments>
+    </type>
+
+    <!-- Value handlers infrastructure -->
+    <virtualType name="FintectureValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">FintectureConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="FintectureConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Fintecture\HyvaPayment\Gateway\Config\Config</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Commands infrastructure -->
+    <virtualType name="FintectureCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">FintectureInitializeCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Initialize command -->
+    <virtualType name="FintectureInitializeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">FintectureInitializationRequest</argument>
+            <argument name="transferFactory" xsi:type="object">Fintecture\HyvaPayment\Gateway\Http\DummyTransferFactory</argument> <!-- [Payment/Model/Method/Adapter][executeCommand]ERROR!Cannot instantiate interface Magento\Payment\Gateway\Http\TransferFactoryInterface if empty -->
+            <argument name="client" xsi:type="object">Fintecture\HyvaPayment\Gateway\Http\Client\DummyClient</argument> <!-- [Payment/Model/Method/Adapter][executeCommand]ERROR getting command!Cannot instantiate interface Magento\Payment\Gateway\Http\ClientInterface if empty-->
+        </arguments>
+    </virtualType>
+
+    <!-- Initialization Request -->
+    <virtualType name="FintectureInitializationRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="transaction" xsi:type="string">Fintecture\HyvaPayment\Gateway\Request\InitializationRequest</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Fintecture\HyvaPayment\Gateway\Request\InitializationRequest">
+        <arguments>
+            <argument name="config" xsi:type="object">Fintecture\HyvaPayment\Gateway\Config\Config</argument>
+        </arguments>
+    </type>
+
+    <type name="Fintecture\HyvaPayment\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Fintecture\HyvaPayment\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">FintectureLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Fintecture\HyvaPayment\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Quote\Observer\SubmitObserver">
+        <plugin name="order_stop_email" type="Fintecture\HyvaPayment\Observer\Quote\SubmitObserver" />
+    </type>
+
+    <!-- Refund -->
+    <type name="Fintecture\HyvaPayment\Plugin\Magento\Sales\Model\Service\CreditmemoService">
+        <arguments>
+            <argument name="create_refund_action" xsi:type="object">Fintecture\HyvaPayment\Model\Fintecture\Action\Refund\CreateRefund</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Api\CreditmemoManagementInterface">
+        <plugin name="allow_pending_refunds" type="Fintecture\HyvaPayment\Plugin\Magento\Sales\Model\Service\CreditmemoService"/>
+    </type>
+
+    <type name="Magento\Payment\Model\Method\Adapter">
+        <plugin name="fintecture_custom_title" type="Fintecture\HyvaPayment\Plugin\Method\AdapterPlugin" />
+    </type>
+</config>

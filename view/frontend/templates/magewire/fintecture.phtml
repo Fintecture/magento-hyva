@@ -1,0 +1,15 @@
+<?php
+    /** @var \Fintecture\HyvaPayment\Magewire\Checkout\Payment\Fintecture $magewire */
+    /** @var \Magento\Framework\View\Element\Template $block */
+    $locale = $block->getLocale();
+    $design = $magewire->getCheckoutDesign();
+?>
+
+<div id="payment-method-fintecture" data-design="<?= $design ?>">
+    <?php if ($design === 'it'): ?>
+        <img src="<?php echo $magewire->getAssetsUrl() ?>/checkout/it_payment_method_description_<?php echo $magewire->getCurrentLang() ?>.svg"/>
+    <?php elseif ($design === 'ist_long'): ?>
+        <img src="<?php echo $magewire->getAssetsUrl() ?>/checkout/it-st_payment_method_description_<?php echo $magewire->getCurrentLang() ?>.svg"/>
+    <?php endif ?>
+</div>
+

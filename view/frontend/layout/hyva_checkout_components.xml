@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Fintecture_HyvaPayment::js/removePadding.js"/>
+    </head>
+    <body>
+        <referenceBlock name="checkout.payment.methods">
+            <block
+                name="checkout.payment.method.fintecture"
+                as="fintecture"
+                template="Fintecture_HyvaPayment::magewire/fintecture.phtml"
+                ifconfig="payment/fintecture/active">
+                <arguments>
+                    <argument name="magewire" xsi:type="object">
+                        Fintecture\HyvaPayment\Magewire\Checkout\Payment\Fintecture
+                    </argument>
+                    <argument name="metadata" xsi:type="array">
+                        <item name="icon" xsi:type="array">
+                            <item name="src" xsi:type="string">Fintecture_HyvaPayment::images/fintecture.svg</item>
+                            <item name="attributes" xsi:type="array">
+                                <item name="title" xsi:type="string">Fintecture</item>
+                                <item name="class" xsi:type="string">inline-block align-middle</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

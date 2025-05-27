@@ -35,21 +35,6 @@ class Fintecture extends Component
         return $this->config->getCheckoutDesign();
     }
 
-    public function isRecommendedItBadgeActive(): bool
-    {
-        return $this->config->isRecommendedItBadgeActive();
-    }
-
-    public function isFirstPositionActive(): bool
-    {
-        return $this->config->isFirstPositionActive();
-    }
-
-    public function getFirstPositionAmount(): float
-    {
-        return (float) $this->config->getFirstPositionAmount();
-    }
-
     public function getAssetsUrl(): string
     {
         return 'https://assets.fintecture.com/plugins/prestashop/1.7-8';

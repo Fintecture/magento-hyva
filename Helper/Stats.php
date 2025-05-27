@@ -91,16 +91,12 @@ class Stats
             'shop_cms' => 'magento',
             'shop_cms_version' => $this->getMagentoVersion(),
             'module_version' => Config::VERSION,
-            'module_position' => '', // TODO: find way to get to find position
             'shop_payment_methods' => $this->getNumberOfActivePaymentMethods(),
             'module_enabled' => $this->config->isActive(),
             'module_production' => $this->config->getAppEnvironment() === Environment::ENVIRONMENT_PRODUCTION ? 1 : 0,
             'module_sandbox_app_id' => $this->config->getAppId(Environment::ENVIRONMENT_SANDBOX),
             'module_production_app_id' => $this->config->getAppId(Environment::ENVIRONMENT_PRODUCTION),
             'module_checkout_design' => $this->config->getCheckoutDesign(),
-            'module_recommended_it' => $this->config->isRecommendedItBadgeActive(),
-            'module_force_position' => $this->config->isFirstPositionActive(),
-            'module_force_position_min_amount' => $this->config->getFirstPositionAmount(),
         ];
     }
 }

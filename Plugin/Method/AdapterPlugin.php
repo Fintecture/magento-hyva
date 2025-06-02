@@ -31,7 +31,7 @@ class AdapterPlugin
         if ($design === 'ist_long' || $design === 'ist_short') {
             $label = __('Secured wire transfer');
         } else {
-            $label = __('Wire transfer');
+            $label = __('Immediate Transfer');
         }
 
         return $label;

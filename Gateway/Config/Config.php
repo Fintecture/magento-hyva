@@ -6,29 +6,29 @@ use Magento\Payment\Gateway\Config\Config as BaseConfig;
 
 class Config extends BaseConfig
 {
-    const CODE = 'fintecture';
-    const VERSION = '1.0.0';
+    public const CODE = 'fintecture';
+    public const VERSION = '1.1.0';
 
-    const KEY_SHOP_NAME = 'general/store_information/name';
-    const KEY_ACTIVE = 'active';
-    const KEY_ALLOW_SPECIFIC = 'allowspecific';
-    const KEY_SPECIFIC_COUNTRY = 'specificcountry';
-    const KEY_ENVIRONMENT = 'environment';
-    const KEY_APP_ID_SANDBOX = 'fintecture_app_id_sandbox';
-    const KEY_APP_ID_PRODUCTION = 'fintecture_app_id_production';
-    const KEY_APP_SECRET_SANDBOX = 'fintecture_app_secret_sandbox';
-    const KEY_APP_SECRET_PRODUCTION = 'fintecture_app_secret_production';
-    const KEY_PRIVATE_KEY_SANDBOX = 'custom_file_upload_sandbox';
-    const KEY_PRIVATE_KEY_PRODUCTION = 'custom_file_upload_production';
-    const KEY_REFUND_STATUSES_ACTIVE = 'refund_statuses_active';
-    const KEY_EXPIRATION_ACTIVE = 'expiration_active';
-    const KEY_EXPIRATION_AFTER = 'expiration_after';
-    const KEY_INVOICING_ACTIVE = 'invoicing_active';
-    const KEY_ALTERNATIVE_METHOD_ACTIVE = 'alternative_method_active';
-    const KEY_ALTERNATIVE_METHOD = 'alternative_method';
-    const KEY_CHECKOUT_DESIGN_SELECTION = 'checkout_design_selection';
-    const KEY_CUSTOM_RECONCILIATION_FIELD_ACTIVE = 'custom_reconciliation_field_active';
-    const KEY_CUSTOM_RECONCILIATION_FIELD = 'custom_reconciliation_field';
+    public const KEY_SHOP_NAME = 'general/store_information/name';
+    public const KEY_ACTIVE = 'active';
+    public const KEY_ALLOW_SPECIFIC = 'allowspecific';
+    public const KEY_SPECIFIC_COUNTRY = 'specificcountry';
+    public const KEY_ENVIRONMENT = 'environment';
+    public const KEY_APP_ID_SANDBOX = 'fintecture_app_id_sandbox';
+    public const KEY_APP_ID_PRODUCTION = 'fintecture_app_id_production';
+    public const KEY_APP_SECRET_SANDBOX = 'fintecture_app_secret_sandbox';
+    public const KEY_APP_SECRET_PRODUCTION = 'fintecture_app_secret_production';
+    public const KEY_PRIVATE_KEY_SANDBOX = 'custom_file_upload_sandbox';
+    public const KEY_PRIVATE_KEY_PRODUCTION = 'custom_file_upload_production';
+    public const KEY_REFUND_STATUSES_ACTIVE = 'refund_statuses_active';
+    public const KEY_EXPIRATION_ACTIVE = 'expiration_active';
+    public const KEY_EXPIRATION_AFTER = 'expiration_after';
+    public const KEY_INVOICING_ACTIVE = 'invoicing_active';
+    public const KEY_ALTERNATIVE_METHOD_ACTIVE = 'alternative_method_active';
+    public const KEY_ALTERNATIVE_METHOD = 'alternative_method';
+    public const KEY_CHECKOUT_DESIGN_SELECTION = 'checkout_design_selection';
+    public const KEY_CUSTOM_RECONCILIATION_FIELD_ACTIVE = 'custom_reconciliation_field_active';
+    public const KEY_CUSTOM_RECONCILIATION_FIELD = 'custom_reconciliation_field';
 
     public function getShopName(): ?string
     {

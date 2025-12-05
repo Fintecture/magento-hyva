@@ -5,11 +5,11 @@
     $design = $magewire->getCheckoutDesign();
 ?>
 
-<div id="payment-method-fintecture" data-design="<?= $design ?>">
+<div id="payment-method-fintecture" data-design="<?= $block->escapeHtmlAttr($design) ?>">
     <?php if ($design === 'it'): ?>
-        <img src="<?php echo $magewire->getAssetsUrl() ?>/checkout/it_payment_method_description_<?php echo $magewire->getCurrentLang() ?>.svg"/>
+        <img src="<?= $block->escapeUrl($magewire->getAssetsUrl()) ?>/checkout/it_payment_method_description_<?= $block->escapeHtmlAttr($magewire->getCurrentLang()) ?>.svg"/>
     <?php elseif ($design === 'ist_long'): ?>
-        <img src="<?php echo $magewire->getAssetsUrl() ?>/checkout/it-st_payment_method_description_<?php echo $magewire->getCurrentLang() ?>.svg"/>
+        <img src="<?= $block->escapeUrl($magewire->getAssetsUrl()) ?>/checkout/it-st_payment_method_description_<?= $block->escapeHtmlAttr($magewire->getCurrentLang()) ?>.svg"/>
     <?php endif ?>
 </div>
 

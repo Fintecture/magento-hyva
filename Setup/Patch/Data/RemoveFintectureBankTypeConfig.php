@@ -43,6 +43,6 @@ class RemoveFintectureBankTypeConfig implements DataPatchInterface
 
     public static function getVersion(): string
     {
-        return '1.1.1';
+        return '1.1.2';
     }
 }

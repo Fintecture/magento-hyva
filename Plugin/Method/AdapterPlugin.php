@@ -34,6 +34,6 @@ class AdapterPlugin
             $label = __('Immediate Transfer');
         }
 
-        return $label;
+        return (string)$label;
     }
 }

@@ -167,16 +167,6 @@ class Config extends BaseConfig
         return $status;
     }
 
-    public function getOrderCreatedStatus(): string
-    {
-        $status = $this->getValue('order_created_status');
-        if (!$status) {
-            $status = 'fintecture_order_created';
-        }
-
-        return $status;
-    }
-
     public function getPaymentPendingStatus(): string
     {
         $status = $this->getValue('payment_pending_status');

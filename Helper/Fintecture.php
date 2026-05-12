@@ -26,6 +26,7 @@ class Fintecture extends AbstractHelper
     private const PAYMENT_COMMUNICATION = 'FINTECTURE-';
 
     public const PIS_TYPE = 'PayByBank';
+
     public const RTP_TYPE = 'RequestToPay';
 
     /** @var Config */
@@ -196,10 +197,6 @@ class Fintecture extends AbstractHelper
                 'status' => $this->config->getPaymentCreatedStatus(),
                 'state' => Order::STATE_PROCESSING,
             ],
-            'order_created' => [
-                'status' => $this->config->getOrderCreatedStatus(),
-                'state' => Order::STATE_PROCESSING,
-            ],
             'payment_pending' => [
                 'status' => $this->config->getPaymentPendingStatus(),
                 'state' => Order::STATE_PENDING_PAYMENT,
@@ -257,7 +254,6 @@ class Fintecture extends AbstractHelper
         // Mapping by payment_status
         $notesMapping = [
             'payment_created' => __('The payment has been validated by the bank.'),
-            'order_created' => __('The order is confirmed, you will receive the funds under 30 days.'),
             'payment_pending' => __('The bank is validating the payment.'),
             'payment_partial' => __('A partial payment has been made.'),
             'payment_unsuccessful' => __('The payment was rejected by either the payer or the bank.'),
@@ -333,10 +329,6 @@ class Fintecture extends AbstractHelper
 
         $baseGrandTotal = (float) $order->getBaseGrandTotal();
         $total = (string) round($baseGrandTotal, 2);
-
-        $baseTaxAmount = $order->getBaseTaxAmount();
-        $totalMinusTaxes = $baseGrandTotal - $baseTaxAmount;
-        $netTotal = (string) round($totalMinusTaxes, 2);
 
         $payload = [
             'meta' => [
